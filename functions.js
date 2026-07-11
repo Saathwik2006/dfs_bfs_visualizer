@@ -1,6 +1,3 @@
-// ===============================
-// Graph Traversal Visualizer JS
-// ===============================
 
 // Graph represented as adjacency list
 let graph = {};
@@ -20,10 +17,7 @@ const colors = {
   current: "#f97316",
 };
 
-// ===============================
 // Node & Edge Creation
-// ===============================
-
 function addNode() {
   const nodeInput = document.getElementById("node");
   const node = nodeInput.value.trim();
@@ -55,10 +49,7 @@ function addEdge() {
   drawGraph();
 }
 
-// ===============================
 // Drawing Graph
-// ===============================
-
 function drawGraph() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -79,6 +70,7 @@ function drawGraph() {
   for (const node in graph) {
     drawNode(node, visited[node] ? colors.visited : colors.unvisited);
   }
+  
 }
 
 function drawNode(node, color) {
@@ -94,10 +86,7 @@ function drawNode(node, color) {
   ctx.fillText(node, positions[node].x, positions[node].y);
 }
 
-// ===============================
 // BFS
-// ===============================
-
 async function startBFS() {
   if (isAnimating) return;
 
@@ -132,10 +121,7 @@ async function startBFS() {
   isAnimating = false;
 }
 
-// ===============================
 // DFS
-// ===============================
-
 async function startDFS() {
   if (isAnimating) return;
 
@@ -157,7 +143,7 @@ async function dfsRecursive(node) {
   traversalOrder.push(node);
   updateTraversalDisplay();
 
-  await sleep(getSpeed());
+  await sleep(getSpeed());   //speed
 
   for (let neighbor of graph[node]) {
     if (!visited[neighbor]) {
@@ -168,10 +154,7 @@ async function dfsRecursive(node) {
   highlightNode(node, colors.visited);
 }
 
-// ===============================
-// Helper Functions
-// ===============================
-
+// Other Functions
 function highlightNode(node, color) {
   drawGraph(); // redraw full graph first
   drawNode(node, color);
